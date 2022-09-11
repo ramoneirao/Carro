@@ -1,21 +1,31 @@
 #include <iostream>
 #include "carro.h"
-#include "carro.cpp"
 
-using namespace std;
+using std::cout;
 
 int main(){
-    carro zafira(2001, 100000, 58);
-
-    cout << "Zafira" << endl;
-    cout << "Ano: " << zafira.getAno() << endl;
-    cout << "Quilometragem: " << zafira.getKm() << "Km" << endl;
-    cout << "Gasolina: " << zafira.getGas() << "L"<< endl;
-    cout << "Carro se movendo!" << endl;
-    zafira.acabaGas();
+    int ano = 1938;
+    float km = 999010, gas = 30; 
+    const int MAXSPEED = 100;
+        
+    carro zafira;
+    
+    cout << "\n - Zafira\n";
+    
+    zafira.print();
+    cout << "Carro se movendo\n";
     zafira.carroAndando();
-    cout << "Gasolina: " << zafira.getGas() << "L" << endl;
-    cout << "Quilometragem: " << zafira.getKm() << "Km" << endl;
+    cout << "Velocidade maxima do modelo Zafira: " << zafira.getMAXSPEED() << " Km/h\n";
+    cout << "Velocidade mimima do modelo Zafira: " << zafira.getMINSPEED() << " Km/h\n"; 
+
+    carro fusca (ano, km, gas, MAXSPEED);
+    cout << "\n - Fusca\n";
+    fusca.print();
+    cout << "Velocidade maxima do modelo Fusca: " << fusca.getMAXSPEED() << " Km/h\n";
+
+    cout << "\n - Outro carro, copia de fusca.\n";
+    carro othercarro(fusca);
+    othercarro.print();
 
     return 0;
 }
