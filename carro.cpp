@@ -3,7 +3,7 @@
 
 using std::cout;
 
-carro::carro(int ano, float km, float gas, double MAXSPEED, double MINSPEED)
+Carro::Carro(int ano, float km, float gas, double MAXSPEED, double MINSPEED)
 :MAXSPEED(MAXSPEED), MINSPEED(MINSPEED)
 {
     setAno(ano);
@@ -11,7 +11,7 @@ carro::carro(int ano, float km, float gas, double MAXSPEED, double MINSPEED)
     setGas(gas);
 }
 
-carro::carro(const carro& other)
+Carro::Carro(const Carro& other)
 :MAXSPEED(other.MAXSPEED), MINSPEED(other.MINSPEED)
 {
     this-> ano = other.ano;
@@ -19,34 +19,34 @@ carro::carro(const carro& other)
     this-> gas = other.gas;
 }
 
-carro::~carro()
+Carro::~Carro()
 {
   
 }
 
-void carro::print() const
+void Carro::print() const
 {
     cout << "Ano: " << ano << "\n"; 
     cout << "Gasolina: " << gas << " L\n";   
     cout << "Quilometragem: " << km << " Km\n"; 
 }
 
-float carro::getGas()const
+float Carro::getGas()const
 {
     return gas;
 }
 
-float carro::getKm()const
+float Carro::getKm()const
 {    
     return km;
 }
 
-int carro::getAno()const
+int Carro::getAno()const
 {
     return ano; 
 }
 
-void carro::setKm(float km) {
+void Carro::setKm(float km) {
     if( km >= 0 ){
         this->km = km;
         return;
@@ -55,7 +55,7 @@ void carro::setKm(float km) {
 
 }
 
-void carro::setGas(float gas) {
+void Carro::setGas(float gas) {
     if( gas >= 0 ){
         this->gas = gas;
         return;
@@ -63,7 +63,7 @@ void carro::setGas(float gas) {
     this->gas = 0;
 } 
 
-void carro::carroAndando(){
+void Carro::carroAndando(){
     km += 2;
     if(gas > 0){
     gas -= 1;
@@ -71,7 +71,7 @@ void carro::carroAndando(){
     cout << "Gasolina: " << gas << " L \nQuilometragem: " << km << " Km\n";
 }
 
-void carro::setAno(int ano){
+void Carro::setAno(int ano){
     if( ano >= 0 ){
         this->ano = ano;
         return;
@@ -79,12 +79,12 @@ void carro::setAno(int ano){
     this->ano = 0;
 }
 
-double carro::getMAXSPEED()const
+double Carro::getMAXSPEED()const
 {
     return MAXSPEED;
 }
 
-double carro::getMINSPEED()const
+double Carro::getMINSPEED()const
 {
     return MINSPEED;
 }
