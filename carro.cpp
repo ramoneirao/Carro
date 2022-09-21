@@ -2,21 +2,32 @@
 #include "carro.h"
 
 using std::cout;
+using std::endl;
+
+// implementação dos métodos:
+
+int Carro::numCarros = 0;
+const string Carro::CORES[ NUMDECORES ] = {"Vermelho","Branco","Preto","Azul"};
+
 
 Carro::Carro(int ano, float km, float gas, double MAXSPEED, double MINSPEED)
-:MAXSPEED(MAXSPEED), MINSPEED(MINSPEED)
+:nameCar(""), MAXSPEED(MAXSPEED), MINSPEED(MINSPEED), MAXSIZENAME(10)
 {
     setAno(ano);
     setKm(km);
     setGas(gas);
+
+    numCarros ++;
 }
 
 Carro::Carro(const Carro& other)
-:MAXSPEED(other.MAXSPEED), MINSPEED(other.MINSPEED)
+:MAXSPEED(other.MAXSPEED), MINSPEED(other.MINSPEED), MAXSIZENAME(10)
 {
     this-> ano = other.ano;
     this-> km = other.km;
-    this-> gas = other.gas;
+    this-> gas = other.gas;         
+    
+    numCarros ++;
 }
 
 Carro::~Carro()
@@ -24,11 +35,27 @@ Carro::~Carro()
   
 }
 
+void Carro::setNameCar( string name )
+{
+    if ( name.length( ) <= MAXSIZENAME )
+        nameCar = name;
+    else   
+        {
+            nameCar = name.substr( 0, MAXSIZENAME );
+            cout << "Nome truncado. Excedeu o valor maximo de caracteres. \n";
+        }
+}
+
 void Carro::print() const
 {
+    int i;
+    i =  rand()%4;
+    cout << "Modelo: "<< nameCar << "\n";
+    cout << "Cor: " << CORES[i] << "\n"; 
     cout << "Ano: " << ano << "\n"; 
     cout << "Gasolina: " << gas << " L\n";   
     cout << "Quilometragem: " << km << " Km\n"; 
+    cout << "O carro esta ligado? " << check << '\n'; 
 }
 
 float Carro::getGas()const
@@ -64,6 +91,10 @@ void Carro::setGas(float gas) {
 } 
 
 void Carro::carroAndando(){
+    check = true;
+
+    cout << "Carro se movendo\n";
+    cout << "O carro esta ligado? " << check << '\n'; 
     km += 2;
     if(gas > 0){
     gas -= 1;
