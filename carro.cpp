@@ -1,14 +1,17 @@
 #include <iostream>
+#include <cstdlib>
 #include "carro.h"
 
 using std::cout;
 using std::endl;
 
-// implementação dos métodos:
+// instanciação das variaveis statics:
 
 int Carro::numCarros = 0;
 const string Carro::CORES[ NUMDECORES ] = {"Vermelho","Branco","Preto","Azul"};
+const string Carro::motor[5] = {"1.0", "1.4", "1.6", "1.8", "2.0"};
 
+// implementação dos métodos:
 
 Carro::Carro(int ano, float km, float gas, double MAXSPEED, double MINSPEED)
 :nameCar(""), MAXSPEED(MAXSPEED), MINSPEED(MINSPEED), MAXSIZENAME(10)
@@ -32,10 +35,10 @@ Carro::Carro(const Carro& other)
 
 Carro::~Carro()
 {
-  
+  numCarros --;
 }
 
-void Carro::setNameCar( string name )
+void Carro::setNameCar(const string & name )
 {
     if ( name.length( ) <= MAXSIZENAME )
         nameCar = name;
@@ -48,14 +51,56 @@ void Carro::setNameCar( string name )
 
 void Carro::print() const
 {
-    int i;
+    int i, j;
     i =  rand()%4;
+    j =  rand()%5;
     cout << "Modelo: "<< nameCar << "\n";
+    cout << "Motor: "<< motor[j] << "\n";
     cout << "Cor: " << CORES[i] << "\n"; 
     cout << "Ano: " << ano << "\n"; 
     cout << "Gasolina: " << gas << " L\n";   
     cout << "Quilometragem: " << km << " Km\n"; 
     cout << "O carro esta ligado? " << check << '\n'; 
+}
+
+void Carro::carroAndando(){
+    check = true;
+    int i = 0;
+
+    cout << "O carro esta ligado? " << check << '\n'; 
+    cout << "Carro se movendo\n";
+
+    cout << "\nGasolina descendo: ";
+    while(gas != 40){
+    gas -= 1;
+    i ++;
+    cout << gas << " ";
+    }
+
+    cout << "\nQuilometragem subindo:";
+    for (int j = 0; j < i; j++) {
+    km += 10;
+    cout << " " << km;
+    }
+    cout << "\nGasolina: " << gas << " L \nQuilometragem: " << km << " Km\n";
+}
+
+void Carro::setAno(int ano){
+    if( ano >= 0 ){
+        this->ano = ano;
+        return;
+    }
+    this->ano = 0;
+}
+
+double Carro::getMAXSPEED()const
+{
+    return MAXSPEED;
+}
+
+double Carro::getMINSPEED()const
+{
+    return MINSPEED;
 }
 
 float Carro::getGas()const
@@ -89,33 +134,3 @@ void Carro::setGas(float gas) {
     }
     this->gas = 0;
 } 
-
-void Carro::carroAndando(){
-    check = true;
-
-    cout << "Carro se movendo\n";
-    cout << "O carro esta ligado? " << check << '\n'; 
-    km += 2;
-    if(gas > 0){
-    gas -= 1;
-    } 
-    cout << "Gasolina: " << gas << " L \nQuilometragem: " << km << " Km\n";
-}
-
-void Carro::setAno(int ano){
-    if( ano >= 0 ){
-        this->ano = ano;
-        return;
-    }
-    this->ano = 0;
-}
-
-double Carro::getMAXSPEED()const
-{
-    return MAXSPEED;
-}
-
-double Carro::getMINSPEED()const
-{
-    return MINSPEED;
-}

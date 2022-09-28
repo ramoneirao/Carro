@@ -4,19 +4,22 @@
 #include <string>
 using std::string;
 
-class Carro{
-    public:
+class Carro
+{
+public:
     // métodos do carro:
     Carro(int = 2002, float = 155000, float = 60, double = 200.0, double = 0.01);
     Carro(const Carro&);
     ~Carro();
 
     static int numCarros;
-
+    void setNameCar(const string &);
+    string getNameCar();
+    
     int getAno() const;
     float getKm() const;
     float getGas() const;
-    string getNameCar();
+
     double getMAXSPEED() const;
     double getMINSPEED() const;
     void print() const;
@@ -24,14 +27,10 @@ class Carro{
     void setAno(int);
     void setGas(float);
     void setKm(float);
-    void setNameCar(string);
     void carroAndando();
-//    void cadastrarACarro( const string & );
 
-
-    private:
+private:
     // atributos do carro:
-
     int ano;
     float gas, km;
     string nameCar;
@@ -41,10 +40,9 @@ class Carro{
     const double MINSPEED;
     const int MAXSIZENAME;
 
-//    static int numCarros;
     static const int NUMDECORES = 4;
     static const string CORES[NUMDECORES];
-
+    static const string motor[5];
 };
 
 # endif
